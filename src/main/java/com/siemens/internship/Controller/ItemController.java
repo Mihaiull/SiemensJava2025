@@ -1,5 +1,7 @@
-package com.siemens.internship;
+package com.siemens.internship.Controller;
 
+import com.siemens.internship.Class.Item;
+import com.siemens.internship.Service.ItemService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/api/items")
@@ -54,8 +57,12 @@ public class ItemController {
         return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 
+    /*
+    *  Modified the processItemsAsync method to use CompletableFuture and ensure
+    *  all items are processed before the CompletableFuture completes.
+    * */
     @GetMapping("/process")
-    public ResponseEntity<List<Item>> processItems() {
+    public ResponseEntity<CompletableFuture<List<Item>>> processItems() {
         return new ResponseEntity<>(itemService.processItemsAsync(), HttpStatus.OK);
     }
 }

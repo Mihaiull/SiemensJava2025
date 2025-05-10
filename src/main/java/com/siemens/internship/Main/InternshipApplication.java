@@ -1,4 +1,4 @@
-package com.siemens.internship;
+package com.siemens.internship.Main;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
